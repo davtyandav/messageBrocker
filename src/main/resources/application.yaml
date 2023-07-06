@@ -1,15 +1,21 @@
 spring:
   kafka:
     bootstrap-servers: kafka:9092
-    topic: my-topic
+    topic: my-topic4
+    listener:
+      ack-mode: manual
     consumer:
-      group-id: my-consumer-group
+      properties:
+        spring.json.trusted.packages: com.davdavtyan.smsproject.model
+      group-id: my-consumer-group3
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     producer:
+      properties:
+        spring.json.trusted.packages: com.davdavtyan.smsproject.model
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 spring.data.mongodb:
   uri: mongodb://localhost:27017/my-database

@@ -1,19 +1,19 @@
 package com.davdavtyan.smsproject.secrvice;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.davdavtyan.smsproject.model.Message;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Producer {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Message> kafkaTemplate;
 
-    public Producer(KafkaTemplate<String, String> kafkaTemplate) {
+    public Producer(KafkaTemplate<String, Message> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void addMessageToKafka(String message) {
-        kafkaTemplate.send("my-topic", message);
+    public void addMessageToKafka(Message message) {
+        kafkaTemplate.send("my-topic4", message);
     }
 }
